@@ -3,12 +3,13 @@ from network import Network
 import pickle
 
 from button import Button
+from pygame.colordict import THECOLORS
 from redrawing_window import redraw_window, btns
+from constants import WIDTH, HEIGHT
 
 pygame.font.init()
 
-WIDTH = 700
-HEIGHT = 700
+
 win = pygame.display.set_mode((WIDTH, HEIGHT))
 pygame.display.set_caption("Client")
 
@@ -134,9 +135,12 @@ def menu():
     while run:
         clock.tick(60)
         win.fill((128, 128, 128))
-        font = pygame.font.SysFont("comicsans", 60)
-        text = font.render("Click to Play!", True, (255, 0, 0))
-        win.blit(text, (100, 200))
+        # font = pygame.font.SysFont("comicsans", 60)
+        font_size = min(WIDTH // 20, HEIGHT // 20)
+        font = pygame.font.SysFont("comicsans", font_size)
+        text = font.render("Click to Play!", True, THECOLORS['green'])
+        # win.blit(text, (100, 200))
+        win.blit(text, ((WIDTH - text.get_width()) // 2, (HEIGHT - text.get_height()) // 2))
         pygame.display.update()
 
         for event in pygame.event.get():

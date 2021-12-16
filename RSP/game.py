@@ -1,11 +1,11 @@
 class Game:
-    def __init__(self, id):
+    def __init__(self, id_):
         self.p1Went = False
         self.p2Went = False
         self.ready = False
-        self.id = id
+        self.id = id_
         self.moves = [None, None]
-        self.wins = [0,0]
+        self.wins = [0, 0]
         self.ties = 0
 
     def get_player_move(self, p):
@@ -25,7 +25,7 @@ class Game:
     def connected(self):
         return self.ready
 
-    def bothWent(self):
+    def both_went(self):
         return self.p1Went and self.p2Went
 
     def winner(self):
@@ -49,6 +49,6 @@ class Game:
 
         return winner
 
-    def resetWent(self):
+    def reset_went(self):
         self.p1Went = False
         self.p2Went = False

@@ -5,19 +5,23 @@ import pickle
 class Network:
     def __init__(self):
         self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-        self.server = "192.168.1.69"
-        self.port = 5555
+        # self.server = "192.168.1.69"
+        self.server = "192.168.1.99"
+        self.port = 8080
+        # self.server = "6.tcp.ngrok.io"
+        # self.port = 14840
         self.addr = (self.server, self.port)
         self.p = self.connect()
 
-    def getP(self):
+    def get_p(self):
         return self.p
 
     def connect(self):
         try:
             self.client.connect(self.addr)
             return self.client.recv(2048).decode()
-        except:
+        except Exception as exception:
+            print(exception)
             pass
 
     def send(self, data):

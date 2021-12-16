@@ -3,10 +3,12 @@ from _thread import *
 import pickle
 from game import Game
 
-server = socket.gethostbyname(socket.getfqdn())#"10.11.250.207"
+server = socket.gethostbyname(socket.getfqdn()) #"10.11.250.207"
+# server = "93.175.28.55"
+server = "192.168.1.99"
 print(server)
 
-port = 5555
+port = 8080
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 
@@ -39,40 +41,40 @@ def threaded_client(conn, p, gameId):
                     break
                 else:
                     if data == "reset":
-                        game.resetWent()
+                        game.reset_went()
                     elif data != "get":
                         game.play(p, data)
 
                     conn.sendall(pickle.dumps(game))
             else:
                 break
-        except:
+        except Exception as exception:
+            print(exception)
             break
 
     print("Lost connection")
     try:
         del games[gameId]
         print("Closing Game", gameId)
-    except:
+    except Exception as exception:
+        print(exception)
         pass
     idCount -= 1
     conn.close()
 
 
-
 while True:
-    conn, addr = s.accept()
-    print("Connected to:", addr)
+    conn_, addr_ = s.accept()
+    print("Connected to:", addr_)
 
     idCount += 1
     p = 0
-    gameId = (idCount - 1)//2
+    gameId_ = (idCount - 1)//2
     if idCount % 2 == 1:
-        games[gameId] = Game(gameId)
+        games[gameId_] = Game(gameId_)
         print("Creating a new game...")
     else:
-        games[gameId].ready = True
+        games[gameId_].ready = True
         p = 1
 
-
-    start_new_thread(threaded_client, (conn, p, gameId))
+    start_new_thread(threaded_client, (conn_, p, gameId_))

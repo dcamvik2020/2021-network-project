@@ -3,7 +3,7 @@ from _thread import *
 import pickle
 from game import Game
 
-server = socket.gethostbyname(socket.getfqdn())
+# server = socket.gethostbyname(socket.getfqdn())
 
 server = "localhost"
 print(server)
@@ -29,7 +29,6 @@ def threaded_client(conn, p, gameId):
     global idCount
     conn.send(str.encode(str(p)))
 
-    reply = ""
     while True:
         try:
             data = conn.recv(4096).decode()
@@ -44,6 +43,7 @@ def threaded_client(conn, p, gameId):
                         game.reset_went()
                     elif data != "get":
                         game.play(p, data)
+                        print('player', p, data)
 
                     conn.sendall(pickle.dumps(game))
             else:

@@ -4,12 +4,11 @@ import pickle
 
 class Network:
     def __init__(self):
-        self.client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.client = socket.socket()
         # self.server = "192.168.1.69"
-        self.server = "192.168.1.99"
-        self.port = 8080
-        # self.server = "6.tcp.ngrok.io"
-        # self.port = 14840
+        # self.port = 8080
+        self.server = "8.tcp.ngrok.io"
+        self.port = 19290
         self.addr = (self.server, self.port)
         self.p = self.connect()
 

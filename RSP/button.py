@@ -8,14 +8,11 @@ class Button:
         self.x = x
         self.y = y
         self.color = color
-        # self.width = 150
         self.width = WIDTH // 5
-        # self.height = 100
         self.height = HEIGHT // 10
 
     def draw(self, window):
         pygame.draw.rect(window, self.color, (self.x, self.y, self.width, self.height))
-        # font = pygame.font.SysFont("comicsans", 40)
         font = pygame.font.SysFont("comicsans", 20)
         text = font.render(self.text, True, (255, 255, 255))
         window.blit(

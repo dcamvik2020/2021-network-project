@@ -16,23 +16,16 @@ def redraw_window(window, width, height, game, p):
 
     if not(game.connected()):
         font = pygame.font.SysFont("comicsans", font_size)
-        # text = font.render("Waiting for Player...", True, (255, 0, 0), True)
-        # text = font.render("Waiting for Player...", True, THECOLORS['yellow'], True)
         text = font.render("Waiting for Player...", True, THECOLORS['yellow'])
         window.fill((128, 128, 128))
         window.blit(text, ((width - text.get_width()) // 2, (height - text.get_height()) // 2))
     else:
-        # first line : 'your move' ... 'waiting'
-        # font = pygame.font.SysFont("comicsans", 60)
         font = pygame.font.SysFont("comicsans", font_size)
         text = font.render("Your Move", True, (0, 255, 255))
-        # text_pos = (80, 200)
         text_pos = ((width // 2 - text.get_width()) // 2, (height - text.get_height()) // 10)
         window.blit(text, text_pos)
 
-        # second line : 'your move' ... 'waiting'
         text = font.render("Opponents", True, (0, 255, 255))
-        # text_pos = (380, 200)
         text_pos = (width // 2 + (width // 2 - text.get_width()) // 2, (height - text.get_height()) // 10)
         window.blit(text, text_pos)
 
@@ -59,14 +52,10 @@ def redraw_window(window, width, height, game, p):
         text_1_pos = ((width // 2 - text1.get_width()) // 2, (height - text1.get_height()) // 10 * 2)
         text_2_pos = (width // 2 + (width // 2 - text2.get_width()) // 2, (height - text2.get_height()) // 10 * 2)
         if p == 1:
-            # window.blit(text2, (100, 350))
             window.blit(text2, text_1_pos)
-            # window.blit(text1, (400, 350))
             window.blit(text1, text_2_pos)
         else:
-            # window.blit(text1, (100, 350))
             window.blit(text1, text_1_pos)
-            # window.blit(text2, (400, 350))
             window.blit(text2, text_2_pos)
 
         for btn in btns:

@@ -3,14 +3,14 @@ from _thread import *
 import pickle
 from game import Game
 
-server = socket.gethostbyname(socket.getfqdn()) #"10.11.250.207"
-# server = "93.175.28.55"
-server = "192.168.1.99"
+server = socket.gethostbyname(socket.getfqdn())
+
+server = "localhost"
 print(server)
 
-port = 8080
+port = 55555
 
-s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s = socket.socket()
 
 try:
     s.bind((server, port))
@@ -44,6 +44,7 @@ def threaded_client(conn, p, gameId):
                         game.reset_went()
                     elif data != "get":
                         game.play(p, data)
+                        print('player', p, data)
 
                     conn.sendall(pickle.dumps(game))
             else:

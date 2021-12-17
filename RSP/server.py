@@ -44,7 +44,6 @@ def threaded_client(conn, p, gameId):
                         game.reset_went()
                     elif data != "get":
                         game.play(p, data)
-                        print('player', p, data)
 
                     conn.sendall(pickle.dumps(game))
             else:

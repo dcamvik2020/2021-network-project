@@ -8,7 +8,7 @@ class Network:
         # self.server = "192.168.1.69"
         # self.port = 8080
         self.server = "8.tcp.ngrok.io"
-        self.port = 19290
+        self.port = 19787
         self.addr = (self.server, self.port)
         self.p = self.connect()
 

@@ -8,7 +8,7 @@ from game import Game
 server = "localhost"
 print(server)
 
-port = 55555
+port = 8765
 
 s = socket.socket()
 
@@ -43,6 +43,7 @@ def threaded_client(conn, p, gameId):
                         game.reset_went()
                     elif data != "get":
                         game.play(p, data)
+                        print('player', p, data)
 
                     conn.sendall(pickle.dumps(game))
             else:
